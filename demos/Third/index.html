@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Experience Virtual Reality</title>
+        <meta name="description" content="VR">
+        <script src="./js/aframe.min.js"></script>
+
+    </head>
+    <body>
+        <a-scene auto-enter-vr >
+            <a-assets>
+                <img id="first" src="assets/3_1.jpg">
+                <img id="second" src="assets/3_2.jpg">
+                <img id="third" src="assets/3_3.jpg">
+                <img id="fourth" src="assets/3_4.jpg">
+                <img id="fifth" src="assets/3_5.jpg">
+                <img id="sixth" src="assets/3_6.jpg">
+                <img id="close" src="assets/close-circled.png">
+                <img id="close1" src="assets/close-circled.png">
+                <img id="home1" src="assets/home.png">
+
+            </a-assets>
+
+            <a-entity position="0 1 3">
+                <a-entity camera="fov:80" look-controls wasd-controls>
+                        <a-entity position="0.15 0 -3" scale="0.2 0.2 0.2"  geometry="primitive: ring; radiusOuter: 0.50;radiusInner: 0.30;" material="color: #000; shader: flat" cursor="maxDistance: 100; fuse: true; timeout:800; fuseTimeout: 3000">
+                            <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                            <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="forwards" from="1 1 1" to="0.2 0.2 0.2" dur="1500"></a-animation>
+                        </a-entity>
+                </a-entity>
+            </a-entity>
+
+            <a-image id="closeimage" src="#close1" position="-1 -4.5 -10" scale="1.3 1.3 1.3"></a-image>
+
+            <a-image id="homepage" src="#home1" position="2 -4.5 -10" scale="1.3 1.3 1.3"></a-image>
+  
+            
+            <a-curvedimage id="o1" src="#first" transparent="true" height="3" radius="5" theta-length="40" rotation="0 280 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="s2" src="#second" transparent="true" height="3" radius="5" theta-length="40" rotation="0 230 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="t3" src="#third" transparent="true" height="3" radius="5" theta-length="40" rotation="0 180 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f4" src="#fourth" transparent="true" height="3" radius="5" theta-length="40" rotation="0 130 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f5" src="#fifth" transparent="true" height="3" radius="5" theta-length="40" rotation="0 80 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="s6" src="#sixth" transparent="true" height="3" radius="5" theta-length="40" rotation="0 30 0" position="0 0.8 0"> </a-curvedimage>
+
+            
+
+          <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+          <a-light type="ambient" color="#fff"></a-light>
+          <a-sky color="rgb(200,200,200)" opacity="0.5"></a-sky>
+        </a-scene>
+        <script>
+            AFRAME.registerComponent("auto-enter-vr", {
+             init: function () {
+              this.el.sceneEl.enterVR();
+             }
+            });
+
+            (function () {
+               // switch to stereoscopic mode directly on page load, this needs to be after the a-scene loads.
+               var scene = document.querySelector('a-scene');
+               if (scene.hasLoaded) {
+                   scene.enterVR();
+               } else {
+                   scene.addEventListener('loaded', function () {
+                       setTimeout(function () {
+                           scene.enterVR();
+                       }, 1000);
+                   });
+               };
+           })();
+
+            
+            document.querySelector("#o1").addEventListener('click', function() {
+                window.location.href = "demos/3_1/index.html";
+            });
+            document.querySelector("#s2").addEventListener('click', function() {
+                window.location.href = "demos/3_2/index.html";
+            });
+            document.querySelector("#t3").addEventListener('click', function() {
+                window.location.href = "demos/3_3/index.html";
+            });
+            document.querySelector("#f4").addEventListener('click', function() {
+                window.location.href = "demos/3_4/index.html";
+            });
+
+            document.querySelector("#f5").addEventListener('click', function() {
+                window.location.href = "demos/3_5/index.html";
+            });
+            document.querySelector("#s6").addEventListener('click', function() {
+                window.location.href = "demos/3_6/index.html";
+            });
+
+            document.querySelector("#closeimage").addEventListener('click', function() {
+                window.location.href = "../../homepage.html";
+            }); 
+
+            document.querySelector("#homepage").addEventListener('click', function() {
+                window.location.href = "../../index.html";
+            }); 
+
+        </script>
+    </body>
+</html>

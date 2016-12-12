@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Experience Virtual Reality</title>
+        <meta name="description" content="VR">
+        <script src="./js/aframe.min.js"></script>
+
+    </head>
+    <body>
+        <a-scene auto-enter-vr vr-mode-ui="enabled: true">
+            <a-assets>
+                <img id="first" src="assets/4_1.jpg">
+                <img id="second" src="assets/4_2.jpg">
+                <img id="third" src="assets/4_3.jpg">
+                <img id="fourth" src="assets/4_4.jpg">
+                <img id="fifth" src="assets/4_5.jpg">
+                <img id="sixth" src="assets/4_6.jpg">
+                <img id="seventh" src="assets/4_7.jpg">
+                <img id="eighth" src="assets/4_8.jpg">
+                <img id="ninth" src="assets/4_9.jpg">
+
+                <img id="close" src="assets/close-circled.png">
+                <img id="close1" src="assets/close-circled.png">
+                <img id="home1" src="assets/home.png">
+
+            </a-assets>
+
+            <a-entity position="0 1 0">
+                <a-entity camera="fov:80" look-controls wasd-controls>
+                        <a-entity position="0.15 -1 -2" scale="0.15 0.15 0.15"  geometry="primitive: ring; radiusOuter: 0.50;radiusInner: 0.30;" material="color: #000; shader: flat" cursor="maxDistance: 100; fuse: true; timeout:800; fuseTimeout: 3000">
+                            <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                            <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="forwards" from="1 1 1" to="0.2 0.2 0.2" dur="1500"></a-animation>
+                        </a-entity>
+                </a-entity>
+            </a-entity>
+
+            <a-image id="closeimage" src="#close1" position="-1 -4.5 -12" scale="1.3 1.3 1.3"></a-image>
+
+            <a-image id="homepage" src="#home1" position="2 -4.5 -12" scale="1.3 1.3 1.3"></a-image>
+  
+            
+            <a-curvedimage id="o1" src="#first" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 240 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="s2" src="#second" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 200 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="t3" src="#third" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 160 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f4" src="#fourth" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 120 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f5" src="#fifth" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 80 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="s6" src="#sixth" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 40 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="s7" src="#seventh" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 0 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="e8" src="#eighth" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 320 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="n9" src="#ninth" transparent="true" height="1.5" radius="4" theta-length="30" rotation="0 280 0" position="0 0.8 0"> </a-curvedimage>
+
+
+          <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+          <a-light type="ambient" color="#fff"></a-light>
+          <a-sky color="rgb(200,200,200)" opacity="0.5"></a-sky>
+        </a-scene>
+        <script>
+            AFRAME.registerComponent("auto-enter-vr", {
+             init: function () {
+              this.el.sceneEl.enterVR();
+             }
+            });
+
+            (function () {
+               // switch to stereoscopic mode directly on page load, this needs to be after the a-scene loads.
+               var scene = document.querySelector('a-scene');
+               if (scene.hasLoaded) {
+                   scene.enterVR();
+               } else {
+                   scene.addEventListener('loaded', function () {
+                       setTimeout(function () {
+                           scene.enterVR();
+                       }, 1000);
+                   });
+               };
+           })();
+
+            
+            document.querySelector("#o1").addEventListener('click', function() {
+                window.location.href = "demos/4_1/index.html";
+            });
+            document.querySelector("#s2").addEventListener('click', function() {
+                window.location.href = "demos/4_2/index.html";
+            });
+            document.querySelector("#t3").addEventListener('click', function() {
+                window.location.href = "demos/4_3/index.html";
+            });
+            document.querySelector("#f4").addEventListener('click', function() {
+                window.location.href = "demos/4_4/index.html";
+            });
+
+            document.querySelector("#f5").addEventListener('click', function() {
+                window.location.href = "demos/4_5/index.html";
+            });
+            document.querySelector("#s6").addEventListener('click', function() {
+                window.location.href = "demos/4_6/index.html";
+            });
+            document.querySelector("#s7").addEventListener('click', function() {
+                window.location.href = "demos/4_7/index.html";
+            });
+            document.querySelector("#e8").addEventListener('click', function() {
+                window.location.href = "demos/4_8/index.html";
+            });
+
+            document.querySelector("#n9").addEventListener('click', function() {
+                window.location.href = "demos/4_9/index.html";
+            });
+
+            document.querySelector("#closeimage").addEventListener('click', function() {
+                window.location.href = "../../homepage.html";
+            }); 
+
+            document.querySelector("#homepage").addEventListener('click', function() {
+                window.location.href = "../../index.html";
+            }); 
+
+        </script>
+    </body>
+</html>
