@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Virtual Tour App</title>
+        <meta name="description" content="webVR">
+        <!-- <script src="https://rawgit.com/bryik/aframe-bmfont-text-component/master/dist/aframe-bmfont-text-component.min.js"></script> -->
+        <script src="./js/aframe.js"></script>
+        <script src="./js/aframe-bmfont-text-component.min.js"></script>
+
+    </head>
+    <body>
+        <a-scene auto-enter-vr>
+            <a-assets>
+                <img id="outside" src="assets/0_outside.jpg">
+                <img id="first" src="assets/1_first.jpg">
+                <img id="second" src="assets/2_second.jpg">
+                <img id="third" src="assets/3_third.jpg">
+                <img id="fourth" src="assets/4_fourth.jpg">
+                <img id="fifth" src="assets/5_fifth.jpg">
+                <img id="close1" src="assets/close-circled.png">
+                <img id="home1" src="assets/home.png">
+            </a-assets>
+
+            <a-entity position="0 1 0">
+                <a-entity camera="fov:80" look-controls wasd-controls>
+                        <a-entity position="0.15 0 -2" scale="0.2 0.2 0.2"  geometry="primitive: ring; radiusOuter: 0.50;radiusInner: 0.30;" material="color: #000; shader: flat" cursor="maxDistance: 100; fuse: true; timeout:800; fuseTimeout: 3000">
+                            <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+                            <a-animation begin="fusing" easing="ease-in" attribute="scale" fill="forwards" from="1 1 1" to="0.2 0.2 0.2" dur="1500"></a-animation>
+                        </a-entity>
+                </a-entity>
+            </a-entity>
+
+            <a-image id="closeimage" src="#close1" position="-1 -2.5 -6"></a-image>
+
+            <a-image id="homepage" src="#home1" position="2 -2.5 -6"></a-image>
+
+            <a-curvedimage id="o1" src="#outside" transparent="true" height="3" radius="5" theta-length="30" scale="1.2 1.2 1.2" rotation="0 260 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f1" src="#first" transparent="true" height="3" radius="5" theta-length="30" scale="1.2 1.2 1.2" rotation="0 220 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="s2" src="#second" transparent="true" height="3" radius="5" theta-length="30" scale="1.2 1.2 1.2" rotation="0 180 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="t3" src="#third" transparent="true" height="3" radius="5" theta-length="30" scale="1.2 1.2 1.2" rotation="0 140 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f4" src="#fourth" transparent="true" height="3" radius="5" theta-length="30" scale="1.2 1.2 1.2" rotation="0 100 0" position="0 0.8 0"> </a-curvedimage>
+
+            <a-curvedimage id="f5" src="#fifth" transparent="true" height="3" radius="5" theta-length="30" scale="1.2 1.2 1.2" rotation="0 60 0" position="0 0.8 0"> </a-curvedimage>
+
+          
+
+            <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1"></a-light>
+             <a-light type="ambient" color="#fff"></a-light>
+            <a-sky color="rgb(200,200,200)" opacity="0.5"></a-sky>
+
+
+        </a-scene>
+        <script>
+            AFRAME.registerComponent('auto-enter-vr', {
+             init: function () {
+              this.el.sceneEl.enterVR();
+             }
+            });
+
+            (function () {
+               // switch to stereoscopic mode directly on page load, this needs to be after the a-scene loads.
+               var scene = document.querySelector('a-scene');
+               if (scene.hasLoaded) {
+                   scene.enterVR();
+               } else {
+                   scene.addEventListener('loaded', function () {
+                       setTimeout(function () {
+                           scene.enterVR();
+                       }, 1000);
+                   });
+               };
+           })();
+
+            document.querySelector("#closeimage").addEventListener('click', function() {
+                window.location.href = "index.html";
+            }); 
+
+            document.querySelector("#homepage").addEventListener('click', function() {
+                window.location.href = "index.html";
+            }); 
+            
+            document.querySelector("#o1").addEventListener('click', function() {
+                window.location.href = "demos/Outside/index.html";
+            });
+            document.querySelector("#f1").addEventListener('click', function() {
+                window.location.href = "demos/First/index.html";
+            });
+            document.querySelector("#s2").addEventListener('click', function() {
+                window.location.href = "demos/Second/index.html";
+            });
+            document.querySelector("#t3").addEventListener('click', function() {
+                window.location.href = "demos/Third/index.html";
+            });
+            document.querySelector("#f4").addEventListener('click', function() {
+                window.location.href = "demos/Fourth/index.html";
+            });
+            document.querySelector("#f5").addEventListener('click', function() {
+                window.location.href = "demos/Fifth/index.html";
+            });
+
+
+           
+        </script>
+    </body>
+</html>
